@@ -106,7 +106,6 @@ const Culture = ({ ...others }) => {
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
-
   };
 
   const [groundTypes, setGroundTypes] = useState([]);
@@ -114,7 +113,7 @@ const Culture = ({ ...others }) => {
 
   useEffect(() => {
     console.log(category);
-   }, [category]);
+  }, [category]);
 
   useEffect(() => {
     // Fetch data from the database using Axios

@@ -31,6 +31,7 @@ import NotificationList from './NotificationList';
 
 // assets
 import { IconBell } from '@tabler/icons';
+import axios from 'axios';
 
 // notification status options
 // const status = [
@@ -77,12 +78,32 @@ const NotificationSection = () => {
   };
 
   const prevOpen = useRef(open);
+
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
     }
     prevOpen.current = open;
   }, [open]);
+
+  const [notifications, setNotif] = useState([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Fetch data from the database using Axios
+      axios
+        .get('http://localhost:8080/api/notifications')
+        .then((response) => {
+          // Assuming your data is an array of objects with id and name properties
+          console.log('Notif' + response.data);
+          setNotif(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching categories:', error);
+        });
+      return () => clearInterval(interval);
+    }, 2000);
+  }, []);
 
   // const handleChange = (event) => {
   //   if (event?.target.value) setValue(event?.target.value);
@@ -121,6 +142,17 @@ const NotificationSection = () => {
           >
             <IconBell stroke={1.5} size="1.3rem" />
           </Avatar>
+          <Box style={{ width: '10px' }}></Box>
+          {notifications.length > 0 && (
+            <Chip
+              size="small"
+              label={notifications.length}
+              sx={{
+                color: theme.palette.background.default,
+                bgcolor: theme.palette.warning.dark
+              }}
+            />
+          )}
         </ButtonBase>
       </Box>
       <Popper
@@ -152,14 +184,14 @@ const NotificationSection = () => {
                         <Grid item>
                           <Stack direction="row" spacing={2}>
                             <Typography variant="subtitle1">All Notification</Typography>
-                            <Chip
+                            {/* <Chip
                               size="small"
                               label="01"
                               sx={{
                                 color: theme.palette.background.default,
                                 bgcolor: theme.palette.warning.dark
                               }}
-                            />
+                            /> */}
                           </Stack>
                         </Grid>
                         <Grid item>
@@ -196,7 +228,7 @@ const NotificationSection = () => {
                             <Divider sx={{ my: 0 }} />
                           </Grid>
                         </Grid>
-                        <NotificationList />
+                        <NotificationList notif={notifications} />
                       </PerfectScrollbar>
                     </Grid>
                   </Grid>
