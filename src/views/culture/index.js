@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
@@ -21,10 +21,12 @@ import {
   // IconButton,
   // InputAdornment,
   InputLabel,
-  OutlinedInput
+  OutlinedInput,
   // Stack,
   // Typography,
   // useMediaQuery
+  Select,
+  MenuItem
 } from '@mui/material';
 
 // third party
@@ -104,12 +106,62 @@ const Culture = ({ ...others }) => {
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
+
   };
+
+  const [groundTypes, setGroundTypes] = useState([]);
+  // const [groundType, setGroundType] = useState('');
+
+  useEffect(() => {
+    console.log(category);
+   }, [category]);
+
+  useEffect(() => {
+    // Fetch data from the database using Axios
+    axios
+      .get('http://localhost:8080/api/groundtypes')
+      .then((response) => {
+        // Assuming your data is an array of objects with id and name properties
+        console.log(response.data);
+        setGroundTypes(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching ground types:', error);
+      });
+  }, []);
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from the database using Axios
+    axios
+      .get('http://localhost:8080/api/categories')
+      .then((response) => {
+        // Assuming your data is an array of objects with id and name properties
+        console.log(response.data);
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching categories:', error);
+      });
+  }, []);
 
   const handleSave = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/api/category', {
-        name: nameCateg
+      const response = await axios.post('http://localhost:8080/api/culture', {
+        name: nameCulture,
+        seedQuantity: seedQuantity,
+        yieldQuantity: yieldQuantity,
+        unit: unit,
+        seedPrice: seedPrice,
+        yieldPrice: yieldPrice,
+        category: {
+          idCategory: category
+        },
+        groundType: {
+          idGroundType: groundType
+        },
+        submit: null
       });
 
       if (response.status == 200) {
@@ -284,17 +336,22 @@ const Culture = ({ ...others }) => {
                 </FormControl>
 
                 <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                  <InputLabel htmlFor="outlined-adornment-email-login">Category</InputLabel>
-                  <OutlinedInput
+                  <InputLabel htmlFor="outlined-adornment-email-login">Ground Types</InputLabel>
+                  <Select
                     id="outlined-adornment-email-login"
-                    type="number"
-                    value={category}
-                    name="category"
+                    name="groundType"
                     onBlur={handleBlur}
-                    onChange={handleCategoryChange}
-                    label="Category"
-                    inputProps={{}}
-                  />
+                    onChange={handleTypeChange}
+                    label="Ground Types"
+                    input={<OutlinedInput />}
+                  >
+                    {/* Map data to MenuItem components */}
+                    {groundTypes.map((ground) => (
+                      <MenuItem key={ground.idGroundType} value={ground.idGroundType}>
+                        {ground.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
                   {touched.email && errors.email && (
                     <FormHelperText error id="standard-weight-helper-text-email-login">
                       {errors.email}
@@ -303,17 +360,22 @@ const Culture = ({ ...others }) => {
                 </FormControl>
 
                 <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                  <InputLabel htmlFor="outlined-adornment-email-login">Ground Type</InputLabel>
-                  <OutlinedInput
+                  <InputLabel htmlFor="outlined-adornment-email-login">Category</InputLabel>
+                  <Select
                     id="outlined-adornment-email-login"
-                    type="number"
-                    value={groundType}
-                    name="groundType"
+                    name="category"
                     onBlur={handleBlur}
-                    onChange={handleTypeChange}
-                    label="Ground Type"
-                    inputProps={{}}
-                  />
+                    onChange={handleCategoryChange}
+                    label="Category"
+                    input={<OutlinedInput />}
+                  >
+                    {/* Map data to MenuItem components */}
+                    {categories.map((ground) => (
+                      <MenuItem key={ground.idCategory} value={ground.idCategory}>
+                        {ground.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
                   {touched.email && errors.email && (
                     <FormHelperText error id="standard-weight-helper-text-email-login">
                       {errors.email}
