@@ -26,28 +26,28 @@ const pages = {
           title: 'Category',
           type: 'item',
           url: '/home/category',
-          target: true
+          target: false
         },
         {
           id: 'culture',
           title: 'Culture',
           type: 'item',
           url: '/home/culture',
-          target: true
+          target: false
         },
         {
           id: 'ground-type',
           title: 'Ground Type',
           type: 'item',
           url: '/home/ground-type',
-          target: true
+          target: false
         },
         {
           id: 'ressource',
           title: 'Ressource',
           type: 'item',
           url: '/home/ressource',
-          target: true
+          target: false
         }
       ]
     }
