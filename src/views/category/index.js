@@ -73,7 +73,7 @@ const Category = ({ ...others }) => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/api/category', {
+      const response = await axios.post('https://culturereposteam-production.up.railway.app/api/category', {
         name: nameCateg
       });
 

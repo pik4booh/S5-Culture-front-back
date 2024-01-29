@@ -92,7 +92,7 @@ const NotificationSection = () => {
     const interval = setInterval(() => {
       // Fetch data from the database using Axios
       axios
-        .get('http://localhost:8080/api/notifications')
+        .get('https://culturereposteam-production.up.railway.app/api/notifications')
         .then((response) => {
           // Assuming your data is an array of objects with id and name properties
           console.log('Notif' + response.data);

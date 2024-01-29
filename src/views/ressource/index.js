@@ -79,7 +79,7 @@ const Ressource = ({ ...others }) => {
   const handleSave = async () => {
     console.log('hehe');
     try {
-      const response = await axios.post('http://localhost:8080/api/ressource', {
+      const response = await axios.post('https://culturereposteam-production.up.railway.app/api/ressource', {
         name: nameRessource,
         pricePerUnit: price
       });

@@ -83,7 +83,7 @@ const NotificationList = (props) => {
 
   const handleSave = async (hashcode) => {
     try {
-      const response = await axios.get('http://localhost:8080/api/validate?hashcode=' + hashcode, {});
+      const response = await axios.get('https://culturereposteam-production.up.railway.app/api/validate?hashcode=' + hashcode, {});
 
       if (response.status == 200) {
         // navigate('/home/category');
@@ -100,7 +100,7 @@ const NotificationList = (props) => {
 
   const handleRemove = async (hashcode) => {
     try {
-      const response = await axios.get('http://localhost:8080/api/refuse?hashcode=' + hashcode, {});
+      const response = await axios.get('https://culturereposteam-production.up.railway.app/api/refuse?hashcode=' + hashcode, {});
 
       if (response.status == 200) {
         // navigate('/home/category');
