@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem, Typography } from '@mui/material';
+// import { Avatar, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Avatar, Button, CardActions, CardContent, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 // project imports
 import BajajAreaChartCard from './BajajAreaChartCard';
@@ -111,6 +112,7 @@ const PopularCard = ({ isLoading }) => {
                               }}
                             >
                               <KeyboardArrowUpOutlinedIcon fontSize="small" color="inherit" />
+                              <KeyboardArrowDownOutlinedIcon fontSize="small" color="inherit" />
                             </Avatar>
                           </Grid>
                         </Grid>
@@ -123,7 +125,7 @@ const PopularCard = ({ isLoading }) => {
                     </Typography>
                   </Grid>
                 </Grid>
-                <Divider sx={{ my: 1.5 }} />
+                {/* <Divider sx={{ my: 1.5 }} />
                 <Grid container direction="column">
                   <Grid item>
                     <Grid container alignItems="center" justifyContent="space-between">
@@ -286,7 +288,7 @@ const PopularCard = ({ isLoading }) => {
                       10% loss
                     </Typography>
                   </Grid>
-                </Grid>
+                </Grid>*/}
               </Grid>
             </Grid>
           </CardContent>
