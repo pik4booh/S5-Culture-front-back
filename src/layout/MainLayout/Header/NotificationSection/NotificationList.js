@@ -70,7 +70,7 @@ const NotificationList = (props) => {
   // useEffect(() => {
   //   // Fetch data from the database using Axios
   //   axios
-  //     .get('http://localhost:8080/api/notifications')
+  //     .get('https://d3ds3c.me/api/notifications')
   //     .then((response) => {
   //       // Assuming your data is an array of objects with id and name properties
   //       console.log(response.data);
@@ -83,7 +83,7 @@ const NotificationList = (props) => {
 
   const handleSave = async (hashcode) => {
     try {
-      const response = await axios.get('https://culturereposteam-production.up.railway.app/api/validate?hashcode=' + hashcode, {});
+      const response = await axios.get('https://d3ds3c.me/api/validate?hashcode=' + hashcode, {});
 
       if (response.status == 200) {
         // navigate('/home/category');
@@ -100,7 +100,7 @@ const NotificationList = (props) => {
 
   const handleRemove = async (hashcode) => {
     try {
-      const response = await axios.get('https://culturereposteam-production.up.railway.app/api/refuse?hashcode=' + hashcode, {});
+      const response = await axios.get('https://d3ds3c.me/api/refuse?hashcode=' + hashcode, {});
 
       if (response.status == 200) {
         // navigate('/home/category');
@@ -146,9 +146,9 @@ const NotificationList = (props) => {
                 <ListItemWrapper>
                   <ListItem alignItems="center">
                     <ListItemAvatar>
-                      <Avatar alt={notif.name} src={User1} />
+                      <Avatar alt={notif.owner.name} src={User1} />
                     </ListItemAvatar>
-                    <ListItemText primary={notif.name} />
+                    <ListItemText primary={notif.owner.name} />
                     <ListItemSecondaryAction>
                       <Grid container justifyContent="flex-end">
                         <Grid item xs={12}>

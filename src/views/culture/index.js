@@ -118,7 +118,7 @@ const Culture = ({ ...others }) => {
   useEffect(() => {
     // Fetch data from the database using Axios
     axios
-      .get('https://culturereposteam-production.up.railway.app/api/groundtypes')
+      .get('https://d3ds3c.me/api/groundtypes')
       .then((response) => {
         // Assuming your data is an array of objects with id and name properties
         console.log(response.data);
@@ -134,7 +134,7 @@ const Culture = ({ ...others }) => {
   useEffect(() => {
     // Fetch data from the database using Axios
     axios
-      .get('https://culturereposteam-production.up.railway.app/api/categories')
+      .get('https://d3ds3c.me/api/categories')
       .then((response) => {
         // Assuming your data is an array of objects with id and name properties
         console.log(response.data);
@@ -147,7 +147,7 @@ const Culture = ({ ...others }) => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post('https://culturereposteam-production.up.railway.app/api/culture', {
+      const response = await axios.post('https://d3ds3c.me/api/culture', {
         name: nameCulture,
         seedQuantity: seedQuantity,
         yieldQuantity: yieldQuantity,

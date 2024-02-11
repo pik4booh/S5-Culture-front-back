@@ -79,7 +79,7 @@ const FirebaseLogin = ({ ...others }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://culturereposteam-production.up.railway.app/api/login', {
+      const response = await axios.post('https://d3ds3c.me/api/login', {
         email: name,
         pwd: pwd
       });
