@@ -146,9 +146,9 @@ const NotificationList = (props) => {
                 <ListItemWrapper>
                   <ListItem alignItems="center">
                     <ListItemAvatar>
-                      <Avatar alt={notif.name} src={User1} />
+                      <Avatar alt={notif.owner.name} src={User1} />
                     </ListItemAvatar>
-                    <ListItemText primary={notif.name} />
+                    <ListItemText primary={notif.owner.name} />
                     <ListItemSecondaryAction>
                       <Grid container justifyContent="flex-end">
                         <Grid item xs={12}>
