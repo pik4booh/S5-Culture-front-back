@@ -191,7 +191,7 @@ const FirebaseLogin = ({ ...others }) => {
         {({ errors, handleBlur, handleSubmit, isSubmitting, touched }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-email-login">admin@gmail.Com</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-email-login">admin@gmail.com</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-email-login"
                 type="email"
